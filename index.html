@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Média</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .campo {
+            margin-bottom: 12px;
+        }
+        label {
+            display: block;
+            margin-bottom: 4px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #resultado {
+            margin-top: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Calculadora de Média</h2>
+
+    <div class="campo">
+        <label for="nota1">Nota 1:</label>
+        <input type="number" id="nota1" step="0.1" min="0" max="10" placeholder="Ex: 8.5">
+    </div>
+
+    <div class="campo">
+        <label for="nota2">Nota 2:</label>
+        <input type="number" id="nota2" step="0.1" min="0" max="10" placeholder="Ex: 6.0">
+    </div>
+
+    <div class="campo">
+        <label for="nota3">Nota 3:</label>
+        <input type="number" id="nota3" step="0.1" min="0" max="10" placeholder="Ex: 7.5">
+    </div>
+
+    <button onclick="calcularMedia()">Calcular Média</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function calcularMedia() {
+            // Captura dos valores digitados
+            const n1 = parseFloat(document.getElementById('nota1').value);
+            const n2 = parseFloat(document.getElementById('nota2').value);
+            const n3 = parseFloat(document.getElementById('nota3').value);
+
+            // Validação de entrada
+            if (isNaN(n1) || isNaN(n2) || isNaN(n3)) {
+                document.getElementById('resultado').innerText = "Por favor, informe as 3 notas.";
+                return;
+            }
+
+            // Uso dos operadores algébricos + e /
+            const media = (n1 + n2 + n3) / 3;
+
+            // Uso das estruturas de decisão if / else
+            let situacao = "";
+            if (media >= 7) {
+                situacao = "Aprovado";
+            } else if (media >= 5) {
+                situacao = "Recuperação";
+            } else {
+                situacao = "Reprovado";
+            }
+
+            // Exibição do resultado com 2 casas decimais (.toFixed(2))
+            document.getElementById('resultado').innerText = 
+                `Média: ${media.toFixed(2)} - Situação: ${situacao}`;
+        }
+    </script>
+
+</body>
+</html>
